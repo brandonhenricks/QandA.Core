@@ -6,15 +6,31 @@ using System.Linq;
 
 namespace QandA.Core.Builders
 {
+    /// <summary>
+    /// Helper Class to Create <see cref="List{IQuestion}"/>
+    /// </summary>
     public class QuestionBuilder : BuilderBase<IQuestion>, IQuestionBuilder
     {
+        #region Public Properties
         public override List<IQuestion> Items { get; }
-
+        #endregion
+        
+        #region Public Constructors
+        /// <summary>
+        /// Public Constructor that sets <see cref="List{T}"/> of <see cref="IQuestion"/>
+        /// </summary>
+        /// <param name="items"></param>
         public QuestionBuilder(List<IQuestion> items)
         {
             Items = items ?? throw new ArgumentNullException(nameof(items));
         }
 
+        /// <summary>
+        /// Public Constructor that sets <see cref="List{T}"/> of <see cref="IQuestion"/> with <see cref="IAnswer"/>
+        /// </summary>
+        /// <param name="questions"></param>
+        /// <param name="answers"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         public QuestionBuilder(List<IQuestion> questions, List<IAnswer> answers)
         {
             Items = questions ?? throw new ArgumentNullException(nameof(questions));
@@ -29,11 +45,25 @@ namespace QandA.Core.Builders
             }
         }
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public QuestionBuilder()
         {
             Items = new List<IQuestion>();
         }
+        #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Add an <see cref="IAnswer"/> to an existing <see cref="IQuestion"/>
+        /// </summary>
+        /// <param name="question"></param>
+        /// <param name="answer"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
         public IQuestionBuilder AddAnswer(IQuestion question, IAnswer answer)
         {
             if (question is null)
@@ -50,6 +80,14 @@ namespace QandA.Core.Builders
             return this;
         }
 
+        /// <summary>
+        /// Add an <see cref="IAnswer"/> to an existing <see cref="IQuestion"/> by <see cref="Guid"/>
+        /// </summary>
+        /// <param name="questionId"></param>
+        /// <param name="answer"></param>
+        /// <returns>IQuestionBuilder</returns>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
         public IQuestionBuilder AddAnswer(Guid questionId, IAnswer answer)
         {
             if (answer is null)
@@ -69,6 +107,12 @@ namespace QandA.Core.Builders
             return this;
         }
 
+        /// <summary>
+        /// Add <see cref="IQuestion"/> to internal <see cref="List{T}"/>
+        /// </summary>
+        /// <param name="question"></param>
+        /// <returns>IQuestionBuilder</returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public IQuestionBuilder AddQuestion(IQuestion question)
         {
             if (question is null)
@@ -81,16 +125,31 @@ namespace QandA.Core.Builders
             return this;
         }
 
+        /// <summary>
+        /// Return <see cref="List{IQuestion}"/>
+        /// </summary>
+        /// <returns>List{IQuestion}</returns>
         public List<IQuestion> Create()
         {
             return Items;
         }
-
+        
+        /// <summary>
+        /// Returns <see cref="IAnswer"/> by <see cref="Guid"/>
+        /// </summary>
+        /// <param name="answerId"></param>
+        /// <returns>IAnswer</returns>
         public IAnswer GetAnswerById(Guid answerId)
         {
             return Items.SelectMany(x => x.Answers).FirstOrDefault(x => x.Id == answerId);
         }
 
+        /// <summary>
+        /// Get a <see cref="List{IAnswer}"/> by <see cref="IQuestion"/>
+        /// </summary>
+        /// <param name="question"></param>
+        /// <returns>List{IAnswer}</returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public List<IAnswer> GetAnswersByQuestion(IQuestion question)
         {
             if (question is null)
@@ -101,6 +160,11 @@ namespace QandA.Core.Builders
             return GetAnswersByQuestionId(question.Id);
         }
 
+        /// <summary>
+        /// Get <see cref="List{IAnswer}"/> by <see cref="Guid">Id</see> of <see cref="IQuestion"/> 
+        /// </summary>
+        /// <param name="questionId"></param>
+        /// <returns></returns>
         public List<IAnswer> GetAnswersByQuestionId(Guid questionId)
         {
             var question = GetById(questionId);
@@ -141,5 +205,7 @@ namespace QandA.Core.Builders
         {
             return Items.FirstOrDefault(x => x.Id == id);
         }
+
+        #endregion
     }
 }
