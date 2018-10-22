@@ -14,7 +14,12 @@ namespace QandA.Core.Questions
         List<IAnswer> Answers { get; }
         QuestionStatus Status { get; }
         QuestionType QuestionType { get; set; }
+        Guid SessionId { get; }
+
         bool SubmitAnswer(Guid answerId);
+
         bool SubmitAnswer(IAnswer answer);
+
+        void SetSessionId(Guid sessionId);
     }
 }

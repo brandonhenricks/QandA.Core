@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace QandA.Core.Builders
 {
     public interface IBuilder<T>
     {
-        List<T> Items { get; set; }
+        List<T> Items { get; }
 
         int Count { get; }
 

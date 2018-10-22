@@ -9,6 +9,7 @@ namespace QandA.Core.Questions
     public class Question : IQuestion
     {
         public Guid Id { get; protected set; }
+        public Guid SessionId { get; protected set; }
         public int MaxAttempts { get; set; }
         public int AttemptCount { get; set; }
         public string DisplayText { get; set; }
@@ -33,8 +34,18 @@ namespace QandA.Core.Questions
 
         public Question(string displayText, List<IAnswer> answers) : base()
         {
+            if (string.IsNullOrEmpty(displayText))
+            {
+                throw new ArgumentNullException(nameof(displayText));
+            }
+
             DisplayText = displayText;
             Answers = answers;
+        }
+
+        public void SetSessionId(Guid sessionId)
+        {
+            SessionId = sessionId;
         }
 
         public bool SubmitAnswer(IAnswer answer)

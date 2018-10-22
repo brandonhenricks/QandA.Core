@@ -8,7 +8,7 @@ namespace QandA.Core.Builders
 {
     public class QuestionBuilder : BuilderBase<IQuestion>, IQuestionBuilder
     {
-        public override List<IQuestion> Items { get; set; }
+        public override List<IQuestion> Items { get; }
 
         public QuestionBuilder(List<IQuestion> items)
         {
@@ -59,10 +59,12 @@ namespace QandA.Core.Builders
 
             var question = GetById(questionId);
 
-            if (question != null)
+            if (question is null)
             {
-                question.Answers.Add(answer);
+                throw new ArgumentException(nameof(questionId));
             }
+
+            question.Answers.Add(answer);
 
             return this;
         }
@@ -75,6 +77,7 @@ namespace QandA.Core.Builders
             }
 
             base.Add(question);
+
             return this;
         }
 

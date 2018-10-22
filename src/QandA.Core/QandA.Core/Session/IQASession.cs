@@ -10,11 +10,17 @@ namespace QandA.Core.Session
         Guid SessionId { get; set; }
         TKey Identifier { get; set; }
         List<IQuestion> ActiveQuestions { get; }
-        DateTime Started { get; set; }
-        DateTime Stopped { get; set; }
-        void Start();
-        void Stop();
+        DateTime SessionStarted { get; set; }
+        DateTime SessionStopped { get; set; }
+
+        string CreateIdentityHash();
+
+        void StartSession();
+
+        void StopSession();
+
         void TryAnswer(IQuestion question, IAnswer answer);
+
         void TryAnswer(Guid questionId, Guid answerId);
     }
 }

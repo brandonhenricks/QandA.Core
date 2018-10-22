@@ -10,7 +10,7 @@ namespace QandA.Core.Builders
     {
         private readonly ILogger Logger;
 
-        public virtual List<T> Items { get; set; }
+        public virtual List<T> Items { get; }
 
         public int Count => Items.Count;
 
@@ -25,7 +25,7 @@ namespace QandA.Core.Builders
             Items = new List<T>();
             Logger = logger;
         }
-        
+
         protected BuilderBase(ILogger<IBuilder<T>> logger, IList<T> items)
         {
             Items = items.ToList();

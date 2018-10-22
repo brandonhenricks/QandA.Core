@@ -13,6 +13,7 @@ namespace QandA.Core.Answers
         {
             Id = Guid.NewGuid();
         }
+
         public Answer(Guid questionId, string value) : base()
         {
             QuestionId = questionId;
