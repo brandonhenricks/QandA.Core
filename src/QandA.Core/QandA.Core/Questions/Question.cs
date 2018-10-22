@@ -22,13 +22,13 @@ namespace QandA.Core.Questions
             AttemptCount = 0;
             Status = QuestionStatus.None;
             Answers = new List<IAnswer>();
+            AttemptCount = 0;
+            QuestionType = QuestionType.Default;
         }
 
         public Question(List<IAnswer> answers) : base()
         {
             Answers = answers;
-            AttemptCount = 0;
-            Status = QuestionStatus.None;
         }
 
         public Question(string displayText, List<IAnswer> answers) : base()
@@ -39,6 +39,11 @@ namespace QandA.Core.Questions
 
         public bool SubmitAnswer(IAnswer answer)
         {
+            if (answer is null)
+            {
+                throw new ArgumentNullException(nameof(answer));
+            }
+
             return SubmitAnswer(answer.Id);
         }
 
