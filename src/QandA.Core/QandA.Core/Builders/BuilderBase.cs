@@ -8,7 +8,7 @@ namespace QandA.Core.Builders
 {
     public abstract class BuilderBase<T> : IBuilder<T>
     {
-        private ILogger Logger;
+        private readonly ILogger Logger;
 
         public virtual List<T> Items { get; set; }
 
@@ -25,8 +25,7 @@ namespace QandA.Core.Builders
             Items = new List<T>();
             Logger = logger;
         }
-
-
+        
         protected BuilderBase(ILogger<IBuilder<T>> logger, IList<T> items)
         {
             Items = items.ToList();
@@ -36,6 +35,7 @@ namespace QandA.Core.Builders
         protected BuilderBase(IList<T> items)
         {
             Items = items.ToList();
+            Logger = new NullLogger<T>();
         }
 
         public void Add(T item)
@@ -45,7 +45,10 @@ namespace QandA.Core.Builders
                 throw new ArgumentNullException(nameof(item));
             }
 
-            Items.Add(item);
+            if (!Items.Contains(item))
+            {
+                Items.Add(item);
+            }
         }
 
         public void Add(List<T> items)
@@ -70,7 +73,10 @@ namespace QandA.Core.Builders
                 throw new ArgumentNullException(nameof(item));
             }
 
-            Items.Remove(item);
+            if (Items.Contains(item))
+            {
+                Items.Remove(item);
+            }
         }
 
         public void Remove(List<T> items)

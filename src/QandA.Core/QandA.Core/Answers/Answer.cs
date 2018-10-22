@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QandA.Core.Answers
 {
@@ -14,6 +12,11 @@ namespace QandA.Core.Answers
         public Answer()
         {
             Id = Guid.NewGuid();
+        }
+        public Answer(Guid questionId, string value) : base()
+        {
+            QuestionId = questionId;
+            Value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         public Answer(Guid questionId, string value, bool isCorrect) : base()

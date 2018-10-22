@@ -7,6 +7,7 @@ namespace QandA.Core.Builders
     public interface IBuilder<T>
     {
         List<T> Items { get; set; }
+
         int Count { get; }
 
         void Add(T item);
