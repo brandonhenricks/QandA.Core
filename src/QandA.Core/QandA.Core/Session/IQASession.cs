@@ -11,7 +11,7 @@ namespace QandA.Core.Session
 
         IList<IQuestion> ActiveQuestions { get; }
 
-        DateTime SessionStarted { get;  }
+        DateTime SessionStarted { get; }
 
         DateTime SessionStopped { get; }
 

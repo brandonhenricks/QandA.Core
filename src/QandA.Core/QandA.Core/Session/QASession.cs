@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using QandA.Core.Answers;
 using QandA.Core.Questions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace QandA.Core.Session
 {
@@ -15,7 +14,7 @@ namespace QandA.Core.Session
 
         private readonly ILogger logger;
 
-        #endregion
+        #endregion Private Properties
 
         #region Public Properties
 
@@ -27,7 +26,7 @@ namespace QandA.Core.Session
 
         public DateTime SessionStopped { get; protected set; }
 
-        #endregion
+        #endregion Public Properties
 
         #region Public Constructors
 
@@ -47,16 +46,16 @@ namespace QandA.Core.Session
             ActiveQuestions = activeQuestions ?? throw new ArgumentNullException(nameof(activeQuestions));
         }
 
-
         public QASession(ILogger logger, IList<IQuestion> activeQuestions) : base()
         {
             logger = logger ?? throw new ArgumentNullException(nameof(logger));
             ActiveQuestions = activeQuestions ?? throw new ArgumentNullException(nameof(activeQuestions));
         }
 
-        #endregion
+        #endregion Public Constructors
 
         #region Public Methods
+
         public string CreateSessionHash()
         {
             logger.LogInformation("CreateSessionHash");
@@ -106,7 +105,6 @@ namespace QandA.Core.Session
             question.SubmitAnswer(answerId);
         }
 
-        #endregion
-
+        #endregion Public Methods
     }
 }

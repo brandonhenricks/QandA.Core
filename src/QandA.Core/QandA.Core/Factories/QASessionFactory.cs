@@ -26,8 +26,8 @@ namespace QandA.Core.Factories
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-        
-        #endregion
+
+        #endregion Public Constructors
 
         #region Public Methods
 
