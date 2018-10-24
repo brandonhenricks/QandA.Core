@@ -12,10 +12,13 @@ namespace QandA.Core.Builders
     public class QuestionBuilder : BuilderBase<IQuestion>, IQuestionBuilder
     {
         #region Public Properties
+
         public override List<IQuestion> Items { get; }
-        #endregion
-        
+
+        #endregion Public Properties
+
         #region Public Constructors
+
         /// <summary>
         /// Public Constructor that sets <see cref="List{T}"/> of <see cref="IQuestion"/>
         /// </summary>
@@ -52,7 +55,8 @@ namespace QandA.Core.Builders
         {
             Items = new List<IQuestion>();
         }
-        #endregion
+
+        #endregion Public Constructors
 
         #region Public Methods
 
@@ -133,7 +137,7 @@ namespace QandA.Core.Builders
         {
             return Items;
         }
-        
+
         /// <summary>
         /// Returns <see cref="IAnswer"/> by <see cref="Guid"/>
         /// </summary>
@@ -161,7 +165,7 @@ namespace QandA.Core.Builders
         }
 
         /// <summary>
-        /// Get <see cref="List{IAnswer}"/> by <see cref="Guid">Id</see> of <see cref="IQuestion"/> 
+        /// Get <see cref="List{IAnswer}"/> by <see cref="Guid">Id</see> of <see cref="IQuestion"/>
         /// </summary>
         /// <param name="questionId"></param>
         /// <returns></returns>
@@ -206,6 +210,6 @@ namespace QandA.Core.Builders
             return Items.FirstOrDefault(x => x.Id == id);
         }
 
-        #endregion
+        #endregion Public Methods
     }
 }

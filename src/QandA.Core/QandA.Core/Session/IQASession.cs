@@ -5,15 +5,17 @@ using System.Collections.Generic;
 
 namespace QandA.Core.Session
 {
-    public interface IQASession<TKey>
+    public interface IQASession
     {
-        Guid SessionId { get; set; }
-        TKey Identifier { get; set; }
-        List<IQuestion> ActiveQuestions { get; }
-        DateTime SessionStarted { get; set; }
-        DateTime SessionStopped { get; set; }
+        Guid SessionId { get; }
 
-        string CreateIdentityHash();
+        IList<IQuestion> ActiveQuestions { get; }
+
+        DateTime SessionStarted { get;  }
+
+        DateTime SessionStopped { get; }
+
+        string CreateSessionHash();
 
         void StartSession();
 

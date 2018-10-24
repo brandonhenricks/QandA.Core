@@ -22,7 +22,6 @@ namespace QandA.Core.Builders
 
         protected BuilderBase(ILogger<IBuilder<T>> logger)
         {
-            Items = new List<T>();
             Logger = logger;
         }
 
