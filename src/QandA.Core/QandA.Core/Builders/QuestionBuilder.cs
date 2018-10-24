@@ -181,6 +181,11 @@ namespace QandA.Core.Builders
             return null;
         }
 
+        /// <summary>
+        /// Remove <see cref="IQuestion"/> from builder.
+        /// </summary>
+        /// <param name="question"></param>
+        /// <returns></returns>
         public IQuestionBuilder RemoveQuestion(IQuestion question)
         {
             if (question is null)
@@ -193,6 +198,11 @@ namespace QandA.Core.Builders
             return this;
         }
 
+        /// <summary>
+        /// Remove <see cref="IQuestion"/> by <see cref="Guid">questionId</see>
+        /// </summary>
+        /// <param name="questionId"></param>
+        /// <returns></returns>
         public IQuestionBuilder RemoveQuestion(Guid questionId)
         {
             var question = GetById(questionId);
@@ -205,6 +215,11 @@ namespace QandA.Core.Builders
             return this;
         }
 
+        /// <summary>
+        /// Return <see cref="IQuestion"/> by <see cref="Guid">id</see>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private IQuestion GetById(Guid id)
         {
             return Items.FirstOrDefault(x => x.Id == id);

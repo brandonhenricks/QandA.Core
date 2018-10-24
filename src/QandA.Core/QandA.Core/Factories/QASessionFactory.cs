@@ -7,6 +7,9 @@ using System.Collections.Generic;
 
 namespace QandA.Core.Factories
 {
+    /// <summary>
+    /// Factory class to create <see cref="QASession"/>
+    /// </summary>
     public class QASessionFactory : IQASessionFactory
     {
         #region Private Properties

@@ -6,8 +6,13 @@ using System.Linq;
 
 namespace QandA.Core.Questions
 {
+    /// <summary>
+    /// Question Class
+    /// </summary>
     public class Question : IQuestion
     {
+        #region Public Properties
+
         public Guid Id { get; protected set; }
         public Guid SessionId { get; protected set; }
         public int MaxAttempts { get; set; }
@@ -16,6 +21,10 @@ namespace QandA.Core.Questions
         public List<IAnswer> Answers { get; }
         public QuestionStatus Status { get; protected set; }
         public QuestionType QuestionType { get; set; }
+
+        #endregion
+
+        #region Public Constructors
 
         public Question()
         {
@@ -42,6 +51,10 @@ namespace QandA.Core.Questions
             DisplayText = displayText;
             Answers = answers;
         }
+
+        #endregion
+
+        #region Public Methods
 
         public void SetSessionId(Guid sessionId)
         {
@@ -77,5 +90,7 @@ namespace QandA.Core.Questions
 
             return result;
         }
+
+        #endregion
     }
 }
